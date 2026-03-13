@@ -1,4 +1,9 @@
-# Industrial IoT Portfolio – Template Repository
+# Industrial IoT Portfolio – Ben Timewell
+**Student:** Ben Timewell  
+**Student ID:** V093350  
+**Cohort:** February 2026 – July 2026  
+**Course:** Diploma of Information Technology – Internet of Things  
+**Institution:** North Metro TAFE
 
 > A student portfolio template for the 18-week Diploma of Information Technology – Internet of Things course.
 > 

@@ -55,10 +55,10 @@ Build an IoT device with temperature monitoring and status display using the fol
 
 | Field | Details |
 |-------|---------|
-| **Student Name** | [Your full name] |
-| **Student ID** | [Your student/enrollment ID] |
+| **Student Name** | Ben Timewell |
+| **Student ID** | V093350 |
 | **Assessment** | A1 – Engine Compartment Monitor |
-| **Submission Date** | [Date submitted to Blackboard] |
+| **Submission Date** | 13/03/2026 |
 
 ---
 
@@ -68,17 +68,21 @@ Build an IoT device with temperature monitoring and status display using the fol
 
 | Field | Details |
 |-------|---------|
-| **Repository URL** | [Paste your GitHub portfolio URL] |
+| **Repository URL** | https://github.com/GebwellB/IoT-Portfolio |
 | **Assessment Folder** | `/A1-Electronics-Fundamentals/` |
 | **Code Location** | `/A1-Electronics-Fundamentals/code/esp32-arduino/` |
-| **Last Commit Date** | [Date of final commit] |
+| **Last Commit Date** | 13/03/2026 |
 
 ### Work Completed
 
 **Brief Description:**  
 Describe which temperature range you achieved, what colours the LED displayed at each range, and any challenges with thermistor calibration.
 
-[Your description here - 2-3 sentences]
+For my thermistor and RGB LED setup, I have 4 ranges, 0-22°C (Blue), 22-24°C (Green), 24-28°C (Yellow) and 28°C+ (Red). While these numbers are rather low, they can be changed to match actual engine temperatures that would be in an engine, along with adjusting colours based on RGB values.  
+
+A few challenges I ran into:  
+1. The thermistor would take a long time to change with my thumb and finger to increase its temperature, sometimes it would only increase by 1-2 degrees, making testing very difficult. I did manage to get it as high as 32°C during testing, but I wasn't quick enough to capture that output or on video.
+2. PIN mapping. I lost a fair chunk of time mapping my PINS to their hardware layout on the Pico W, not their GPIO PIN numbering. Rookie mistake, but lesson learnt. (seriously, why can't all the pins just go off the hardware layout, they are already numbered, why have two sets of numbers!)
 
 ---
 
@@ -88,26 +92,36 @@ Describe which temperature range you achieved, what colours the LED displayed at
 
 | Requirement | Evidence Provided | Location in Repository |
 |-------------|-------------------|------------------------|
-| Arduino `.ino` file with thermistor and RGB LED code | ☐ Included | `/A1-Electronics-Fundamentals/code/esp32-arduino/` |
-| Thermistor ADC reading and temperature conversion | ☐ Working | Serial output in code |
-| RGB LED PWM control | ☐ Working | analogWrite() in code |
-| Temperature-to-colour mapping logic | ☐ Included | Code comments explain thresholds |
-| Wiring diagram | ☐ Included | Fritzing file or image in folder |
-| Assessment README.md | ☐ Included | `/A1-Electronics-Fundamentals/README.md` |
+| Arduino `.cpp` file with thermistor and RGB LED code | ✔ Included | `/A1-Electronics-Fundamentals/code/esp32-arduino/src/main.cpp` |
+| Thermistor ADC reading and temperature conversion | ✔ Working | Serial output in code |
+| RGB LED PWM control | ✔ Working | analogWrite() in code |
+| Temperature-to-colour mapping logic | ✔ Included | Code comments explain thresholds |
+| Wiring diagram | ✔ Included | `/A1-Electronics-Fundamentals/media/WiringDiagram.PNG` |
+| Assessment README.md | ✔ Included | `/A1-Electronics-Fundamentals/README.md` |
 
 ### Hardware Evidence
 
 | Requirement | Evidence | Provided |
 |-------------|----------|----------|
-| **Wokwi Simulation** | Simulation link showing circuit and code working | ☐ Yes |
-| **OR Breadboard Photo** | Photo of physical circuit with sensors wired | ☐ Yes |
-| **Working System** | Screenshot of serial monitor showing sensor readings | ☐ Yes |
+| **Wokwi Simulation** | Simulation link showing circuit and code working | ❌ No |
+| **OR Breadboard Photo** | Photo of physical circuit with sensors wired | ✔ Yes |
+| **Working System** | Screenshot of serial monitor showing sensor readings | ✔ Yes |
 
 **Wokwi Link (if used):**  
-[Paste your Wokwi simulation URL here]
+N/A
 
 **Breadboard Photo/Screenshot:**  
-[Describe what's shown in your evidence]
+![RGB LED](media/RGBLED.gif)  
+This shows the RGB LED changing from green (22-24°C) to yellow (24-28°C)
+
+![RGB LED](media/RGBLED2.gif)  
+This shows the RGB LED changing from red (28°C+) to yellow (24-28°C)
+
+![Console Output](media/ConsoleOutput.PNG)  
+This is the console output from the Pico showing live temperature readings
+
+![Wiring Diagram](media/WiringDiagram.PNG)  
+TinkerCAD didn't have a Raspberry Pi Pico to use, so I simulated it using an Arduino - I haven't tested this or coded it in TinkerCAD, but the wiring is the same, aside from PIN numbering and layout
 
 ---
 
@@ -117,23 +131,23 @@ Confirm all requirements completed before submitting:
 
 | Requirement | Completed |
 |-------------|-----------|
-| Thermistor sensor reads temperature correctly | ☐ |
-| Thermistor ADC values convert to °C via formula | ☐ |
-| RGB LED displays green for normal temperature | ☐ |
-| RGB LED displays yellow for warning temperature | ☐ |
-| RGB LED displays red for critical temperature | ☐ |
-| Serial output displays temperature readings | ☐ |
-| Wiring diagram included and accurate | ☐ |
-| Code is clean and commented | ☐ |
-| GitHub repository is accessible | ☐ |
-| Assessment README documents the work | ☐ |
-| Hardware evidence provided (simulation or photo) | ☐ |
+| Thermistor sensor reads temperature correctly | ✔ |
+| Thermistor ADC values convert to °C via formula | ✔ |
+| RGB LED displays green for normal temperature | ✔ |
+| RGB LED displays yellow for warning temperature | ✔ |
+| RGB LED displays red for critical temperature | ✔ |
+| Serial output displays temperature readings | ✔ |
+| Wiring diagram included and accurate | ✔ |
+| Code is clean and commented | ✔ |
+| GitHub repository is accessible | ✔ |
+| Assessment README documents the work | ✔ |
+| Hardware evidence provided (simulation or photo) | ✔ |
 
 ---
 
 ## Optional Notes
 
-[Add any additional context: platform choice, optional features added, challenges encountered, etc.]
+This was all done on a Raspberry Pi Pico W, using C++ and the Ardunio Libraries, but file structure is matched to ESP32 Arduino.
 
 ---
 
@@ -141,12 +155,12 @@ Confirm all requirements completed before submitting:
 
 By submitting this form, I confirm that:
 
-- ☐ All code in my A1 folder is my own work
-- ☐ Thermistor is correctly wired and functional
-- ☐ RGB LED is correctly wired and functional
-- ☐ Temperature-to-colour mapping logic is working
-- ☐ Code follows ICTIOT502 assessment requirements
-- ☐ I have not plagiarized or breached academic integrity
+- ✔ All code in my A1 folder is my own work
+- ✔ Thermistor is correctly wired and functional
+- ✔ RGB LED is correctly wired and functional
+- ✔ Temperature-to-colour mapping logic is working
+- ✔ Code follows ICTIOT502 assessment requirements
+- ✔ I have not plagiarized or breached academic integrity
 
 ---
 
