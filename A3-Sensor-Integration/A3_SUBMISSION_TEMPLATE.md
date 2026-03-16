@@ -57,10 +57,10 @@ Implement a vibration monitoring system using an accelerometer for predictive ma
 
 | Field | Details |
 |-------|---------|
-| **Student Name** | [Your full name] |
-| **Student ID** | [Your student/enrollment ID] |
+| **Student Name** | Ben Timewell |
+| **Student ID** | V093350 |
 | **Assessment** | A3 – Vibration Monitoring |
-| **Submission Date** | [Date submitted to Blackboard] |
+| **Submission Date** | 16/03/2026 |
 
 ---
 
@@ -70,7 +70,7 @@ Implement a vibration monitoring system using an accelerometer for predictive ma
 
 | Field | Details |
 |-------|---------|
-| **Repository URL** | [Paste your GitHub portfolio URL] |
+| **Repository URL** | https://github.com/GebwellB/IoT-Portfolio |
 | **Assessment Folder** | `/A3-Vibration-Monitoring/` |
 | **Code Location** | `/A3-Vibration-Monitoring/code/esp32-arduino/` |
 | **Last Commit Date** | [Date of final commit] |
@@ -82,6 +82,12 @@ Describe your vibration monitoring system: which axes you measured, what filteri
 
 [Your description here - 2-3 sentences]
 
+![Console Output](media/ConsoleOutputMPU.png)
+Console Output
+
+![Graph Output](media/GraphOutputMPU.png)
+Graph Output
+
 ---
 
 ## Assessment Evidence
@@ -90,8 +96,8 @@ Describe your vibration monitoring system: which axes you measured, what filteri
 
 | Requirement | Evidence Provided | Location in Repository |
 |-------------|-------------------|------------------------|
-| Arduino `.ino` file with GY-521 code | ☐ Included | `/A3-Vibration-Monitoring/code/esp32-arduino/` |
-| X, Y, Z acceleration measurements | ☐ Working | Raw values logged to serial |
+| Arduino `.py` file with GY-521 code | ✔️ Included | `/A3-Vibration-Monitoring/code/esp32-arduino/` |
+| X, Y, Z acceleration measurements | ✔️ Working | Raw values logged to serial |
 | Moving average filter implementation | ☐ Included | Code comments explain filter window |
 | Threshold detection for anomalies | ☐ Included | Thresholds defined for X, Y, Z axes |
 | CSV data file (60+ seconds) | ☐ Included | CSV in assessment folder |
@@ -142,12 +148,12 @@ Confirm all requirements completed before submitting:
 
 By submitting this form, I confirm that:
 
-- ☐ All code in my A3 folder is my own work
-- ☐ GY-521 accelerometer is correctly wired and functional
+- ✔️ All code in my A3 folder is my own work
+- ✔️ GY-521 accelerometer is correctly wired and functional
 - ☐ Moving average filter is properly implemented
 - ☐ Threshold detection logic works as designed
-- ☐ Code follows ICTIOT502 assessment requirements
-- ☐ I have not plagiarized or breached academic integrity
+- ✔️ Code follows ICTIOT502 assessment requirements
+- ✔️ I have not plagiarized or breached academic integrity
 
 ---
 
