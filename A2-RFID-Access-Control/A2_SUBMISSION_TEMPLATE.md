@@ -56,8 +56,8 @@ Implement an RFID authentication system with timestamp logging using:
 
 | Field | Details |
 |-------|---------|
-| **Student Name** | [Your full name] |
-| **Student ID** | [Your student/enrollment ID] |
+| **Student Name** | Ben Timewell |
+| **Student ID** | V093350 |
 | **Assessment** | A2 – RFID Access Control |
 | **Submission Date** | [Date submitted to Blackboard] |
 
@@ -69,7 +69,7 @@ Implement an RFID authentication system with timestamp logging using:
 
 | Field | Details |
 |-------|---------|
-| **Repository URL** | [Paste your GitHub portfolio URL] |
+| **Repository URL** | https://github.com/GebwellB/IoT-Portfolio |
 | **Assessment Folder** | `/A2-RFID-Access-Control/` |
 | **Code Location** | `/A2-RFID-Access-Control/code/esp32-arduino/` |
 | **Last Commit Date** | [Date of final commit] |
@@ -79,7 +79,7 @@ Implement an RFID authentication system with timestamp logging using:
 **Brief Description:**  
 Describe your RFID system: how many authorized cards, what the RTC logs, and how unauthorized cards are handled.
 
-[Your description here - 2-3 sentences]
+I have two total cards, a blue (Aldi shopping trolley) Token, and a white RFID card. Only the white card is in the allowed array. When either is scanned, an RGB light will show green for valid, or flash red for invalid.
 
 ---
 
@@ -89,12 +89,12 @@ Describe your RFID system: how many authorized cards, what the RTC logs, and how
 
 | Requirement | Evidence Provided | Location in Repository |
 |-------------|-------------------|------------------------|
-| Arduino `.ino` file with RFID and RTC code | ☐ Included | `/A2-RFID-Access-Control/code/esp32-arduino/` |
-| RFID-RC522 reading multiple cards | ☐ Working | Serial output shows card UIDs |
-| DS3231 RTC module providing timestamps | ☐ Working | CSV log includes accurate timestamps |
-| Access control logic (authorized/unauthorized) | ☐ Included | Code distinguishes card types |
-| CSV log file with 5+ access events | ☐ Included | CSV in assessment folder |
-| Assessment README.md | ☐ Included | `/A2-RFID-Access-Control/README.md` |
+| Arduino `.ino` file with RFID and RTC code | ✅ Included | `/A2-RFID-Access-Control/code/esp32-arduino/` |
+| RFID-RC522 reading multiple cards | ✅ Working | Serial output shows card UIDs |
+| DS3231 RTC module providing timestamps | ❌ Working | CSV log includes accurate timestamps |
+| Access control logic (authorized/unauthorized) | ✅ Included | Code distinguishes card types |
+| CSV log file with 5+ access events | ❌ Included | CSV in assessment folder |
+| Assessment README.md | ✅ Included | `/A2-RFID-Access-Control/README.md` |
 
 ### Hardware Evidence
 
