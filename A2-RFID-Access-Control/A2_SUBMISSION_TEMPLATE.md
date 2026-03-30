@@ -1,7 +1,7 @@
 # Assessment Submission Portfolio
 
 **Assessment A2: RFID Access Control System**  
-**Due:** Week 6 | **Weight:** 10%
+**Due:** Week 6/7 | **Weight:** 10%
 
 ---
 
@@ -28,27 +28,29 @@ This assessment submission form documents the completion of Assessment A2 (RFID 
 
 ### Assessment Overview
 
-Implement an RFID authentication system with timestamp logging using:
-- **RFID-RC522 module** reading multiple card types
-- **DS3231 RTC module** for accurate timestamp logging
+Implement an RFID authentication system with audio feedback using:
+- **RFID-RC522 module** reading multiple card types over SPI
+- **Piezo buzzer** with distinct tones for granted / denied feedback
+- **Green + red LEDs** as visual indicators
 - **Serial output** logging all access events
-- **Access control logic** to distinguish authorized vs. unauthorized cards
+- **Access control logic** to distinguish authorised vs. unauthorised cards
 
 ### How to Complete This Assessment
 
-1. Complete RFID and RTC code in `/A2-RFID-Access-Control/code/esp32-arduino/`
-2. Test with multiple RFID cards and verify logging
-3. Generate CSV log file with 5+ access attempts
+1. Complete RFID + buzzer code in `/A2-RFID-Access-Control/code/esp32-arduino/`
+2. Test with multiple RFID cards and verify both tone patterns
+3. Record Serial Monitor output showing 5+ access attempts (mix of granted/denied)
 4. Commit all files to GitHub
 5. Fill out this form with your submission details
 6. Copy completed form into Blackboard by the due date
 
 ### What to Submit on GitHub
 
-- ✅ Arduino `.ino` file with RFID-RC522 and DS3231 RTC code
-- ✅ CSV log file showing 5+ access event timestamps
-- ✅ README.md explaining RFID setup and authorized cards
-- ✅ Breadboard photo showing RFID and RTC wiring
+- ✅ `.ino` or `.py` file with RFID-RC522, buzzer, and LED code
+- ✅ Serial Monitor screenshot/log showing 5+ access attempts
+- ✅ README.md explaining RFID setup, authorised card UIDs, and SPI vs I²C paragraph
+- ✅ Breadboard photo showing RFID, buzzer, and LED wiring
+- ✅ Demo video (2 min) showing both tone patterns
 
 ---
 
@@ -71,13 +73,13 @@ Implement an RFID authentication system with timestamp logging using:
 |-------|---------|
 | **Repository URL** | https://github.com/GebwellB/IoT-Portfolio |
 | **Assessment Folder** | `/A2-RFID-Access-Control/` |
-| **Code Location** | `/A2-RFID-Access-Control/code/esp32-arduino/` |
+| **Code Location** | `/A2-RFID-Access-Control/code/esp32-arduino/` or `code/pico-micropython/` |
 | **Last Commit Date** | [Date of final commit] |
 
 ### Work Completed
 
 **Brief Description:**  
-Describe your RFID system: how many authorized cards, what the RTC logs, and how unauthorized cards are handled.
+Describe your RFID access control system: how many authorised cards, what tones you chose for granted/denied, and how you distinguish cards.
 
 I have two total cards, a blue (Aldi shopping trolley) Token, and a white RFID card. Only the white card is in the allowed array. When either is scanned, an RGB light will show green for valid, or flash red for invalid.
 
@@ -85,30 +87,44 @@ I have two total cards, a blue (Aldi shopping trolley) Token, and a white RFID c
 
 ## Assessment Evidence
 
+![Green Breadboard](media/breadboard_green.jpg)
+![Red Breadboard](media/breadboard_red.jpg)
+![Working Breadboard](media/breadboard_gif.gif)
+![Console Output](media/console_output.png)
+
 ### Code and Documentation
 
 | Requirement | Evidence Provided | Location in Repository |
 |-------------|-------------------|------------------------|
-| Arduino `.ino` file with RFID and RTC code | ✅ Included | `/A2-RFID-Access-Control/code/esp32-arduino/` |
-| RFID-RC522 reading multiple cards | ✅ Working | Serial output shows card UIDs |
-| DS3231 RTC module providing timestamps | ❌ Working | CSV log includes accurate timestamps |
-| Access control logic (authorized/unauthorized) | ✅ Included | Code distinguishes card types |
-| CSV log file with 5+ access events | ❌ Included | CSV in assessment folder |
-| Assessment README.md | ✅ Included | `/A2-RFID-Access-Control/README.md` |
+| `.ino` or `.py` file with RFID + buzzer code | ✅ Included | `/A2-RFID-Access-Control/code/main.cpp` |
+| RFID-RC522 reading multiple cards (SPI) | ✅ Working | Serial output shows card UIDs |
+| Distinct **granted tone** (rising, two notes) | ❌ Opted for RGB light only | Demo video / serial log |
+| Distinct **denied tone** (alarm pattern, 3× low) | ❌ Opted for RGB light only | Demo video / serial log |
+| Green + red LED indicators | ✅ Working | Breadboard photo |
+| Serial log with 5+ access attempts (mix granted/denied) | ✅ Included | Screenshot in assessment folder |
+| SPI vs I²C paragraph in README | ✅ Included | `/A2-RFID-Access-Control/README.md` |
+
+### SPI vs I²C
+
+I2C is a two wire communication protocol that is mainly used to connect low speed devices together, where SPI is a four wire communication protocol. While I2C is slower, it only requires two wires from a microcontroller, where SPI needs four, three of which are common, but one is a direct connection from the microcontroller, this limits you to the number of devices the microcontroller can connect to, where I2C, your limitation is hardware addressing and hardware address conflicts and how quickly you want to receive the data from the sensors, meaning more sensors will slow the entire data gathering stage down.
+
+Generally speaking, you would use I2C when you have many low speed devices, like sensors, and you'd use SPI when you need high speed / precise timing devices, such as displays.
 
 ### Hardware Evidence
 
 | Requirement | Evidence | Provided |
 |-------------|----------|----------|
-| **Breadboard Photo** | Photo showing RFID-RC522 and DS3231 RTC wired correctly | ☐ Yes |
-| **Access Log Sample** | CSV showing timestamps of access attempts | ☐ Yes |
-| **Working System** | Screenshot of serial monitor showing access log output | ☐ Yes |
+| **Breadboard Photo** | Photo showing RFID-RC522, buzzer, and LEDs wired correctly | ✅ Yes |
+| **Serial Log Screenshot** | 5+ access attempts showing granted and denied | ✅ Yes |
+| **Demo Video** | 2 min showing both tone patterns, LEDs responding | ✅ Yes |
 
 **Breadboard Photo/Screenshot:**  
-[Describe what's shown in your evidence]
+![Bread board](media/breadboard_green.jpg)
+This is the working wired up breadboard, with a working RGB light when a card is read. Green to show when the card is allowed and red when the card is denied.
 
-**Sample CSV Entry:**  
-[Paste 1-2 rows from your CSV log showing timestamp, card UID, and access status]
+**Sample Serial Log Entry:**  
+![Console Output](media/console_output.png)  
+This console output shows valid and invalid cards, all stored within an array
 
 ---
 
@@ -118,22 +134,30 @@ Confirm all requirements completed before submitting:
 
 | Requirement | Completed |
 |-------------|-----------|
-| RFID-RC522 reads card UIDs correctly | ☐ |
-| DS3231 RTC provides accurate timestamps | ☐ |
-| Serial output logs each access attempt | ☐ |
-| CSV file contains 5+ access events | ☐ |
-| Authorized cards are identified | ☐ |
-| Unauthorized cards are rejected | ☐ |
-| Code is clean and commented | ☐ |
-| GitHub repository is accessible | ☐ |
-| Assessment README documents the setup | ☐ |
-| Breadboard photo shows all connections | ☐ |
+| RFID-RC522 reads card UIDs correctly over SPI | ✅ |
+| Authorised cards are identified and granted | ✅ |
+| Unauthorised cards are rejected | ✅ |
+| Distinct **granted** tone plays on authorised card | ❌ (RGB Light only)|
+| Distinct **denied** tone plays on unauthorised card | ❌ (RGB Light only)|
+| Green LED lights on granted, red on denied | ✅ |
+| Serial output logs each access attempt | ✅ |
+| SPI vs I²C paragraph included in README | ✅ |
+| Code is clean and commented | ✅ |
+| GitHub repository is accessible | ✅ |
+| Breadboard photo shows all connections | ✅ |
+| Demo video shows both tone patterns | ❌ (RGB Light only) |
 
 ---
 
 ## Optional Notes
 
-[Add any additional context: card UIDs used, how you defined authorization, challenges with RTC synchronization, etc.]
+Cards used:
+| Card Type | UID |
+|-------------|-----------|
+| Blue token | bcef454a |
+| White card | 23ca7516 |
+
+Granted access is done by checking if the authorised card is within an array of all valid cards. This does require manual update if a new card needs access, which can be a pain if a new card is added to an existing truck, but if the truck is offline, it won't get the update to allow the new card.
 
 ---
 
@@ -141,11 +165,11 @@ Confirm all requirements completed before submitting:
 
 By submitting this form, I confirm that:
 
-- ☐ All code in my A2 folder is my own work
-- ☐ RFID and RTC modules are correctly wired and functional
-- ☐ Access logging system works as designed
-- ☐ Code follows ICTIOT502 assessment requirements
-- ☐ I have not plagiarized or breached academic integrity
+- ✅ All code in my A2 folder is my own work
+- ✅ RFID-RC522 module is correctly wired and functional
+- ❌ Buzzer tones for granted and denied are distinct and working (opted for only RGB light)
+- ✅ Code follows ICTIOT502 assessment requirements
+- ✅ I have not plagiarised or breached academic integrity
 
 ---
 
