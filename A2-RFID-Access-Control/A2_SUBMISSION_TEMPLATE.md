@@ -61,7 +61,7 @@ Implement an RFID authentication system with audio feedback using:
 | **Student Name** | Ben Timewell |
 | **Student ID** | V093350 |
 | **Assessment** | A2 – RFID Access Control |
-| **Submission Date** | [Date submitted to Blackboard] |
+| **Submission Date** | 30/03/2026 |
 
 ---
 
@@ -74,7 +74,7 @@ Implement an RFID authentication system with audio feedback using:
 | **Repository URL** | https://github.com/GebwellB/IoT-Portfolio |
 | **Assessment Folder** | `/A2-RFID-Access-Control/` |
 | **Code Location** | `/A2-RFID-Access-Control/code/esp32-arduino/` or `code/pico-micropython/` |
-| **Last Commit Date** | [Date of final commit] |
+| **Last Commit Date** | 30/03/2026 |
 
 ### Work Completed
 

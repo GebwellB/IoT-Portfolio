@@ -60,7 +60,7 @@ Implement a vibration monitoring system using an accelerometer for predictive ma
 | **Student Name** | Ben Timewell |
 | **Student ID** | V093350 |
 | **Assessment** | A3 – Vibration Monitoring |
-| **Submission Date** | 16/03/2026 |
+| **Submission Date** | 30/03/2026 |
 
 ---
 
@@ -73,7 +73,7 @@ Implement a vibration monitoring system using an accelerometer for predictive ma
 | **Repository URL** | https://github.com/GebwellB/IoT-Portfolio |
 | **Assessment Folder** | `/A3-Vibration-Monitoring/` |
 | **Code Location** | `/A3-Vibration-Monitoring/code/esp32-arduino/` |
-| **Last Commit Date** | [Date of final commit] |
+| **Last Commit Date** | 30/03/2026 |
 
 ### Work Completed
 
