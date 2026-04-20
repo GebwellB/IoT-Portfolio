@@ -71,10 +71,10 @@ Integrate all previous sensors and add actuators/displays to create a complete h
 
 | Field | Details |
 |-------|---------|
-| **Student Name** | Ben Timewell |
-| **Student ID** | V093350 |
+| **Student Name** | [Your full name] |
+| **Student ID** | [Your student/enrollment ID] |
 | **Assessment** | A4 – Complete Haul Truck Device |
-| **Submission Date** | 20/04/2026 |
+| **Submission Date** | [Date submitted to Blackboard] |
 
 ---
 
@@ -87,7 +87,7 @@ Integrate all previous sensors and add actuators/displays to create a complete h
 | **Repository URL** | [Paste your GitHub portfolio URL] |
 | **Assessment Folder** | `/A4-Haul-Truck-Integration/` |
 | **Code Location** | `/A4-Haul-Truck-Integration/code/esp32-arduino/` |
-| **Last Commit Date** | 20/04/2026 |
+| **Last Commit Date** | [Date of final commit] |
 
 ### Work Completed
 
