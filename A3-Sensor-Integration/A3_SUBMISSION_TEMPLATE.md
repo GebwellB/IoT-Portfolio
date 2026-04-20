@@ -36,7 +36,7 @@ Implement a vibration monitoring system using an accelerometer for predictive ma
 
 ### How to Complete This Assessment
 
-1. Complete accelerometer code in `/A3-Vibration-Monitoring/code/esp32-arduino/`
+1. Complete accelerometer code in `/A3-Vibration-Monitoring/code/MicroPython/`
 2. Implement moving average filter for noise reduction
 3. Set vibration thresholds and log anomalies
 4. Collect 60 seconds of data and export to CSV
@@ -46,10 +46,9 @@ Implement a vibration monitoring system using an accelerometer for predictive ma
 
 ### What to Submit on GitHub
 
-- ✅ Arduino `.ino` file with GY-521 accelerometer code
+- ✅ MicroPython `.py` file with GY-521 accelerometer code
 - ✅ CSV data file with 60 seconds of X, Y, Z acceleration readings
 - ✅ README.md explaining filtering and threshold logic
-- ✅ Breadboard photo showing GY-521 wiring
 
 ---
 
@@ -60,7 +59,7 @@ Implement a vibration monitoring system using an accelerometer for predictive ma
 | **Student Name** | Ben Timewell |
 | **Student ID** | V093350 |
 | **Assessment** | A3 – Vibration Monitoring |
-| **Submission Date** | 30/03/2026 |
+| **Submission Date** | 20/04/2026 |
 
 ---
 
@@ -73,20 +72,26 @@ Implement a vibration monitoring system using an accelerometer for predictive ma
 | **Repository URL** | https://github.com/GebwellB/IoT-Portfolio |
 | **Assessment Folder** | `/A3-Vibration-Monitoring/` |
 | **Code Location** | `/A3-Vibration-Monitoring/code/esp32-arduino/` |
-| **Last Commit Date** | 30/03/2026 |
+| **Last Commit Date** | 20/04/2026 |
 
 ### Work Completed
 
 **Brief Description:**  
 Describe your vibration monitoring system: which axes you measured, what filtering you applied, and what vibration thresholds trigger alerts.
 
-[Your description here - 2-3 sentences]
+I have measured the Z axis, with a filter of +1.5 and -1.5 from starting point. Anything over or under these amounts, will trigger an alert to show the truck is taking significant vibrations
 
 ![Console Output](media/ConsoleOutputMPU.png)
-Console Output
+Console Output - All Axis
+
+![Console Output](media/ConsoleOutputMPU-Filtered.png)  
+Console Output - Filtered for Z
+
+![Console Output](media/ConsoleOutputMPU-Filtered2.png)  
+Console Output - Filtered for Y & Z
 
 ![Graph Output](media/GraphOutputMPU.png)
-Graph Output
+Graph Output - All Axis
 
 ---
 
@@ -97,25 +102,16 @@ Graph Output
 | Requirement | Evidence Provided | Location in Repository |
 |-------------|-------------------|------------------------|
 | Arduino `.py` file with GY-521 code | ✔️ Included | `/A3-Vibration-Monitoring/code/esp32-arduino/` |
-| X, Y, Z acceleration measurements | ✔️ Working | Raw values logged to serial |
-| Moving average filter implementation | ☐ Included | Code comments explain filter window |
-| Threshold detection for anomalies | ☐ Included | Thresholds defined for X, Y, Z axes |
-| CSV data file (60+ seconds) | ☐ Included | CSV in assessment folder |
-| Assessment README.md | ☐ Included | `/A3-Vibration-Monitoring/README.md` |
+| Y, Z acceleration measurements | ✔️ Working | Raw values logged to serial |
+| Moving average filter implementation | ✔️ Included | Code comments explain filter window |
+| Threshold detection for anomalies | ✔️ Included | Thresholds defined for Y, Z axes |
+| Assessment README.md | ✔️ Included | `/A3-Vibration-Monitoring/README.md` |
 
 ### Hardware Evidence
 
 | Requirement | Evidence | Provided |
 |-------------|----------|----------|
-| **Breadboard Photo** | Photo showing GY-521 (MPU6050) correctly wired to ESP32 | ☐ Yes |
-| **Raw Data Sample** | CSV showing raw and filtered acceleration values | ☐ Yes |
-| **Working System** | Screenshot of serial monitor showing sensor values and anomalies | ☐ Yes |
-
-**Breadboard Photo/Screenshot:**  
-[Describe what's shown in your evidence]
-
-**Sample CSV Entry:**  
-[Paste 2-3 rows from your CSV showing Timestamp, X_Raw, X_Filtered, Y_Raw, Y_Filtered, Z_Raw, Z_Filtered]
+| **Working System** | Screenshot of serial monitor showing sensor values and anomalies | ✔️ Yes |
 
 ---
 
@@ -123,24 +119,21 @@ Graph Output
 
 Confirm all requirements completed before submitting:
 
-| Requirement | Completed |
-|-------------|-----------|
-| GY-521 sensor reads X, Y, Z acceleration | ☐ |
-| Moving average filter reduces noise | ☐ |
-| Filtered values are noticeably smoother than raw | ☐ |
-| Threshold detection identifies anomalies | ☐ |
-| CSV file contains 60+ seconds of data | ☐ |
-| CSV includes both raw and filtered values | ☐ |
-| Timestamp column in CSV | ☐ |
-| Code is clean and commented | ☐ |
-| GitHub repository is accessible | ☐ |
-| Assessment README documents filter parameters and thresholds | ☐ |
+| Requirement | Completed | Notes |
+|-------------|-----------|-------|
+| GY-521 sensor reads X, Y, Z acceleration | ✔️ | Code only reads Y & Z axis
+| Moving average filter reduces noise | ✔️ | Filter only detects anomalies
+| Filtered values are noticeably smoother than raw | ✔️ | Filter only detects anomalies
+| Threshold detection identifies anomalies | ✔️ |
+| Code is clean and commented | ✔️ |
+| GitHub repository is accessible | ✔️ |
+| Assessment README documents filter parameters and thresholds | ✔️ |
 
 ---
 
 ## Optional Notes
 
-[Add any additional context: filter window size used, vibration thresholds defined, how you triggered test vibrations, etc.]
+Had many issues with hardware with this assessment. Mocked a lot of data to get filters to work, ended up having to use MicroPython as C had constant issues reading data from the MPU.
 
 ---
 
@@ -150,8 +143,8 @@ By submitting this form, I confirm that:
 
 - ✔️ All code in my A3 folder is my own work
 - ✔️ GY-521 accelerometer is correctly wired and functional
-- ☐ Moving average filter is properly implemented
-- ☐ Threshold detection logic works as designed
+- ✔️ Moving average filter is properly implemented
+- ✔️ Threshold detection logic works as designed
 - ✔️ Code follows ICTIOT502 assessment requirements
 - ✔️ I have not plagiarized or breached academic integrity
 
