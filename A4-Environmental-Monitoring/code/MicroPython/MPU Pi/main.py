@@ -51,13 +51,13 @@ while True:
     aZ = accel["z"]
     # Anything above 1.5 or below -1.5 movement on the Z axis, but the axis starts at 10 when in the correct orientation, trigger an alert, shocks are taking damage, otherwise just output the raw value
     if (abs(aZ) > 11.5):
-        print("SHOCKS ARE TAKING DAMAGE")
+        print("SHOCKS")
     else:
         output_shocks = ""
     
     # Anything above 6 or below -6 movement on the Y axis, trigger an alert, truck is tipping over, otherwise just output the raw value
     if (abs(aY) > 6):
-        print("TRUCK IS TIPPING OVER")
+        print("TIPPING")
     else:
         output_tip = ""
         
