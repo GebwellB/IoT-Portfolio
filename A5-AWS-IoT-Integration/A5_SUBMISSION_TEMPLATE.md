@@ -66,11 +66,11 @@ Connect your haul truck device to AWS IoT Core and implement cloud features with
 
 ## Student Information
 
-| Field | Details |
-|-------|---------|
-| **Student Name** | [Your full name] |
-| **Student ID** | [Your student/enrollment ID] |
-| **Assessment** | A5 – AWS IoT Integration |
+| Field               | Details                        |
+| ------------------- | ------------------------------ |
+| **Student Name**    | Ben Timewell                   |
+| **Student ID**      | V093350                        |
+| **Assessment**      | A5 – AWS IoT Integration       |
 | **Submission Date** | [Date submitted to Blackboard] |
 
 ---
@@ -79,12 +79,12 @@ Connect your haul truck device to AWS IoT Core and implement cloud features with
 
 ### GitHub Portfolio Repository
 
-| Field | Details |
-|-------|---------|
-| **Repository URL** | [Paste your GitHub portfolio URL] |
-| **Assessment Folder** | `/A5-AWS-IoT-Integration/` |
-| **Code Location** | `/A5-AWS-IoT-Integration/code/esp32-arduino/` |
-| **Last Commit Date** | [Date of final commit] |
+| Field                 | Details                                       |
+| --------------------- | --------------------------------------------- |
+| **Repository URL**    | https://github.com/GebwellB/IoT-Portfolio     |
+| **Assessment Folder** | `/A5-AWS-IoT-Integration/`                    |
+| **Code Location**     | `/A5-AWS-IoT-Integration/code/esp32-arduino/` |
+| **Last Commit Date**  | [Date of final commit]                        |
 
 ### Work Completed
 
@@ -99,18 +99,76 @@ Describe your AWS integration: which services you used (IoT Core, Shadows, Rules
 
 ### Code and Documentation
 
-| Requirement | Evidence Provided | Location in Repository |
-|-------------|-------------------|------------------------|
-| Arduino `.ino` with MQTT/AWS code | ☐ Included | `/A5-AWS-IoT-Integration/code/esp32-arduino/` |
-| X.509 certificate authentication | ☐ Included | Code shows cert/key loading |
-| MQTT publish to telemetry topic | ☐ Working | Messages visible in AWS test console |
-| Device Shadow implementation | ☐ Working | Shadow syncs desired/reported state |
-| IoT Rules Engine configuration | ☐ Included | Rules route to SNS, CloudWatch |
-| SNS alert setup | ☐ Working | Alerts sent on threshold violation |
-| CloudWatch alarms | ☐ Working | Alarms trigger on anomalies |
-| Testing report (PDF) | ☐ Included | PDF in assessment folder |
-| Assessment README.md | ☐ Included | `/A5-AWS-IoT-Integration/README.md` |
+| Requirement                      | Evidence Provided | Location in Repository                                                                                         |
+| -------------------------------- | ----------------- | -------------------------------------------------------------------------------------------------------------- |
+| Python `.py` with MQTT/AWS code  | ✔️ Included       | `/A5-AWS-IoT-Integration/code/AWS Sender`                                                                      |
+| X.509 certificate authentication | ✔️ Included       | Code shows cert/key loading - Code is in `/A5-AWS-IoT-Integration/code/AWS Sender/data_collector.py`           |
+| MQTT publish to telemetry topic  | ✔️ Working        | Messages visible in AWS test console  - Code is in `/A5-AWS-IoT-Integration/code/AWS Sender/data_collector.py` |
+| IoT Rules Engine configuration   | ✔️ Included       | Rules route to SNS, CloudWatch                                                                                 |
+| SNS alert setup                  | ✔️ Working        | Alerts sent on threshold violation                                                                             |
+| CloudWatch alarms                | ✔️ Working        | Alarms trigger on anomalies                                                                                    |
+| Testing report                   | ✔️ Included       | Within this document                                                                                           |
+| Assessment README.md             | ✔️ Included       | `/A5-AWS-IoT-Integration/README.md`                                                                            |
+Lambda function in AWS to log CloudWatch alerts and add data to the database
 
+```python
+import json
+import boto3
+from decimal import Decimal
+  
+def lambda_handler(event, context):
+
+    print("Received event:")
+    print(json.dumps(event))
+
+    timestamp = event.get("timestamp", "unknown")
+    temperature = float(event.get("temperature", 0))
+    mpu = event.get("mpu", "na")
+    rfid = event.get("rfid", "na")
+    
+    dynamodb = boto3.resource("dynamodb")
+    table = dynamodb.Table("truck_data")
+    cloudwatch = boto3.client("cloudwatch")
+
+    item = {
+        "timestamp": timestamp,
+        "temperature": Decimal(str(temperature)),
+        "mpu": mpu,
+        "rfid": rfid
+    }
+
+    response = table.put_item(Item=item)
+    cloudwatch.put_metric_data(
+        Namespace="TruckMonitoring",
+        MetricData=[
+            {
+                "MetricName": "Temperature",
+                "Value": temperature,
+                "Unit": "None"
+            }
+        ]
+    )
+    
+    return {
+        "statusCode": 200,
+        "body": "Success"
+    }
+```
+
+CloudWatch Alert code. This creates the custom name space so the metric appears WITHIN CloudWatch
+```python
+cloudwatch.put_metric_data(
+
+        Namespace="TruckMonitoring",
+        MetricData=[
+            {
+                "MetricName": "Temperature",
+                "Value": temperature,
+                "Unit": "None"
+            }
+        ]
+    )
+```
 ### Testing & Demonstration Evidence
 
 | Requirement | Evidence | Provided |

@@ -67,12 +67,12 @@ Implement a vibration monitoring system using an accelerometer for predictive ma
 
 ### GitHub Portfolio Repository
 
-| Field | Details |
-|-------|---------|
-| **Repository URL** | https://github.com/GebwellB/IoT-Portfolio |
-| **Assessment Folder** | `/A3-Vibration-Monitoring/` |
-| **Code Location** | `/A3-Vibration-Monitoring/code/esp32-arduino/` |
-| **Last Commit Date** | 20/04/2026 |
+| Field                 | Details                                        |
+| --------------------- | ---------------------------------------------- |
+| **Repository URL**    | https://github.com/GebwellB/IoT-Portfolio      |
+| **Assessment Folder** | `/A3-Vibration-Monitoring/`                    |
+| **Code Location**     | `/A3-Vibration-Monitoring/code/esp32-arduino/` |
+| **Last Commit Date**  | 20/04/2026                                     |
 
 ### Work Completed
 
