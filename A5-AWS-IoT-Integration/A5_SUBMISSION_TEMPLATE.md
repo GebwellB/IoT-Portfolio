@@ -178,21 +178,21 @@ cloudwatch.put_metric_data(
 **Testing Plan / Demonstration:**  
 To start out with this project, I create a script (`code/aws_sender/data_collector.py`) to retrieve data from the three sensors, then package it into JSON format to send up to AWS via MQTT. This screenshot shows the payload in console as it's being sent to AWS.
 
-![[mqtt-sendtoaws.png]]
+![[mqtt-sendtoaws.png]](media/mqtt-sendtoaws.png)
 
 After the MQTT messages are sent, AWS receives them, this was captured through the MQTT connectivity monitor, subscribing to the `truck/truck_001/telemetry` topic
 
-![[mqtt-receivedonaws.png]]
+![[mqtt-receivedonaws.png]](media/mqtt-receivedonaws.png)
 
 This was step one in my testing process, just making sure data was actually arriving at AWS. But, how did I get there?
 
 First, I had to create a new thing. In this case, truck_001:
 
-![[thing-devices.png]]
+![[thing-devices.png]](media/thing-devices.png)
 
 After I created the truck, I downloaded it's certificates and made sure it had a policy attached so it could subscribe and publish to the MQTT topics:
 
-![[thing-certs.png]]
+![[thing-certs.png]](media/thing-certs.png)
 
 Once I downloaded the certificates, I loaded them in via this code block. This links paho MQTT client to know where to find the right x509 certificates to use during transit.
 
@@ -206,7 +206,7 @@ client.tls_set(
 
 Once the thing, policy and certificates were downloaded and added to code, I setup the truck message rules, so it could actually display the received MQTT data:
 
-![[thing-rules.png]]
+![[thing-rules.png]](media/thing-rules.png)
 
 This also allowed me to configure the "send to Lambda" function, so the data being received could be added to the database, and trigger CloudWatch alerts, but up until this point, this was all that was needed to get the thing to connect and send data to AWS.
 
@@ -216,7 +216,7 @@ First, the lambda function added the data into the database. The lambda code use
 
 This screenshot shows the database receiving and storing data from the truck
 
-![[database-items.png]]
+![[database-items.png]](media/database-items.png)
 
 But that's purely for record keeping. The important part, is monitoring the truck. I did this within the lambda function that stores the data into the database. It was not straight forward to setup, as the CloudWatch alerts only monitor the lambda function itself, not the data. However, to do this, this code was added to the Lambda function:
 
@@ -236,30 +236,30 @@ cloudwatch.put_metric_data(
 
 This allowed a custom name space to appear within the cloudwatch metrics page, which then allowed me to create a custom alert:
 
-![[cloudwatch-metrics-settings.png]]
+![[cloudwatch-metrics-settings.png]](media/cloudwatch-metrics-settings.png)
 
 The annoying part about cloudwatch alerts though, is the lowest value you can view, is every 1 minute. But I'm sending data every 1 second. So if the engine is over temp, it only triggers based on an average within that 1 minute space. Trying out different options, like maximum, minimum and sum, don't give the best results. So average data over that 1 minute was the best I could manage. It's a horrible system, but for my use case, it works. It does also mean that the engine temp threshold is triggered at 52.5 degrees, which in a real world situation, is cold. But, that can be adjusted to requirements.
 
 This is how the cloudwatch dashboard looks:
 
-![[cloudwatch-alarm.png|697]]
+![[cloudwatch-alarm.png|697]](media/cloudwatch-alarm.png)
 
 Pretty cool, right? You also get spammed with emails:
 
-![[cloudwatch-email.png]]
+![[cloudwatch-email.png]](media/cloudwatch-email.png)
 (it really wasn't cool, the email spam)
 
 This is how the SNS alert config looks - not very exciting:
 
-![[sns-overtempalarm.png]]
+![[sns-overtempalarm.png]](media/sns-overtempalarm.png)
 
 And lastly, because it didn't really fit anywhere else, this is a diagram of the Lambda function:
 
-![[lambda_function.png]]
+![[lambda_function.png]](media/lambda_function.png)
 
 Looking at my AWS Learning lab, this entire setup cost $1.6 USD. Not terrible really.
 
-![[learner_lab_cost.png]]
+![[learner_lab_cost.png|138]](media/learner_lab_cost.png)
 ## Assessment Evidence Checklist
 
 Confirm all requirements completed before submitting:
