@@ -32,12 +32,11 @@ Integrate all previous sensors and add actuators/displays to create a complete h
 
 **Integrated Components:**
 - ✅ DHT11 (temperature/humidity) - from A1
+- ✅ MQ-2 (gas sensor) - from A1
 - ✅ Flame sensor - from A1
-- ✅ RFID-RC522 - from A2
+- ✅ RFID-RC522 + DS3231 RTC - from A2
 - ✅ GY-521 accelerometer - from A3
-- ✅ SG90 servo (dump bed control)
 - ✅ RGB LED (status indicator)
-- ✅ Buzzer (alarms)
 
 **Requirements:**
 - Clean, modular code with functions
@@ -48,20 +47,18 @@ Integrate all previous sensors and add actuators/displays to create a complete h
 ### How to Complete This Assessment
 
 1. Integrate all A1-A3 sensors into `/A4-Haul-Truck-Integration/code/esp32-arduino/`
-2. Add servo, OLED, LED, and buzzer control
-3. Organize code with functions for each subsystem
+2. Add LED control
+3. Organise code with functions for each subsystem
 4. Create/photograph complete circuit
-5. Prepare 5-minute demo video showing all features
-6. Commit all files to GitHub
-7. Fill out this form with your submission details
-8. Copy completed form into Blackboard by the due date
+5. Commit all files to GitHub
+6. Fill out this form with your submission details
+7. Copy completed form into Blackboard by the due date
 
 ### What to Submit on GitHub
 
 - ✅ Complete Arduino `.ino` file with all sensors and actuators
 - ✅ Fritzing circuit diagram (PNG) or breadboard photo
 - ✅ README.md with component list, pins, and system overview
-- ✅ Demo video link (YouTube/OneDrive/Vimeo)
 
 ---
 
@@ -70,9 +67,9 @@ Integrate all previous sensors and add actuators/displays to create a complete h
 | Field | Details |
 |-------|---------|
 | **Student Name** | Ben Timewell |
-| **Student ID** | V093350 |
+| **Student ID** | V093550 |
 | **Assessment** | A4 – Complete Haul Truck Device |
-| **Submission Date** | 20/04/2026 |
+| **Submission Date** | 11/05/2026 |
 
 ---
 
@@ -80,19 +77,23 @@ Integrate all previous sensors and add actuators/displays to create a complete h
 
 ### GitHub Portfolio Repository
 
-| Field                 | Details                                          |
-| --------------------- | ------------------------------------------------ |
-| **Repository URL**    | https://github.com/GebwellB/IoT-Portfolio        |
-| **Assessment Folder** | `/A4-Haul-Truck-Integration/`                    |
-| **Code Location**     | `/A4-Haul-Truck-Integration/code/esp32-arduino/` |
-| **Last Commit Date**  | 20/04/2026                                       |
+| Field | Details |
+|-------|---------|
+| **Repository URL** | https://github.com/GebwellB/IoT-Portfolio |
+| **Assessment Folder** | `/A4-Haul-Truck-Integration/` |
+| **Code Location** | `/A4-Haul-Truck-Integration/code/` |
+| **Last Commit Date** | 11/05/2026 |
 
 ### Work Completed
 
 **Brief Description:**  
-Summarize your complete truck system: all integrated sensors, what the OLED displays, how alerts trigger the buzzer, and servo operation.
+Summarize your complete truck system: all integrated sensors, how alerts trigger the buzzer, and servo operation.
 
-[Your description here - 3-4 sentences]
+My truck has 3 sensors attached. The engine temperature, the RFID access control and the MPU sensor for sensing when the truck is tipping / shocks are taking damage. These have different alert thresholds.  
+
+The engine temperature will alert if over 50 degrees.  
+The MPU will alert if there's too much movement in the shocks in a short amount of time, as well as if the truck is tilted more than 45 degrees.  
+And the RFID access control simply alerts if the card tapped is allowed to enter or not.
 
 ---
 
@@ -102,30 +103,30 @@ Summarize your complete truck system: all integrated sensors, what the OLED disp
 
 | Requirement | Evidence Provided | Location in Repository |
 |-------------|-------------------|------------------------|
-| Complete Arduino `.ino` file | ☐ Included | `/A4-Haul-Truck-Integration/code/esp32-arduino/` |
-| All A1-A3 sensors integrated | ☐ Working | DHT11, MQ-2, flame, RFID, RTC, accelerometer |
-| SG90 servo control | ☐ Working | Servo responds to commands |
-| OLED display showing status | ☐ Working | Display shows real-time truck data |
-| RGB LED status indicator | ☐ Working | LED changes color based on system state |
-| Buzzer alarm logic | ☐ Working | Buzzer triggers on threshold violations |
-| Modular code with functions | ☐ Included | Code organized by subsystem |
-| Circuit diagram (Fritzing) | ☐ Included | PNG in assessment folder |
-| Assessment README.md | ☐ Included | `/A4-Haul-Truck-Integration/README.md` |
+| Complete Arduino `.py` file | ✅ Included | `/A4-Haul-Truck-Integration/code/AWS Sender/json_constructor.py` |
+| All A1-A3 sensors integrated | ✅ Working | DHT11, RFID, accelerometer |
+| RGB LED status indicator | ✅ Working | LED changes color based on system state |
+| Modular code with functions | ✅ Included | Code organized by subsystem |
+| Circuit diagram (Fritzing) | ✅ Included | PNG in assessment folder |
+| Assessment README.md | ✅ Included | `/A4-Haul-Truck-Integration/README.md` |
 
 ### Hardware & Demonstration Evidence
 
 | Requirement | Evidence | Provided |
 |-------------|----------|----------|
-| **Circuit Diagram** | Fritzing diagram showing all components and wiring | ☐ Yes |
-| **OR Breadboard Photo** | High-quality photo of complete circuit | ☐ Yes |
-| **Demo Video** | 5-minute video showing all features working | ☐ Yes |
-| **Component List** | README lists all sensors, actuators, and pin assignments | ☐ Yes |
+| **Circuit Diagram** | Fritzing diagram showing all components and wiring | ✅ Yes |
+| **OR Breadboard Photo** | High-quality photo of complete circuit | ✅ Yes |
+| **Component List** | README lists all sensors, and pin assignments | ✅ Yes |
 
 **Circuit Diagram/Breadboard Photo:**  
-[Describe what's shown in your evidence]
+![RFID and MPU Sensors](media/RFID_and_MPU.png)  
+RFID and MPU sensors, connected to my PC for serial output
 
-**Demo Video Link:**  
-[Paste your YouTube/OneDrive/Vimeo link]
+![Engine Temp Sensor](media/RGBLED.gif)  
+This is my original engine temp sensor
+
+![Horrible MS Paint Wiring Diagram](media/mspaint_wiringdiagram.png)  
+Tinkercad didn't have the right devices to make it there, so heres a wonderful MS paint wiring diagram!
 
 ---
 
@@ -135,27 +136,20 @@ Confirm all requirements completed before submitting:
 
 | Requirement | Completed |
 |-------------|-----------|
-| DHT11 sensor reading temperature/humidity | ☐ |
-| MQ-2 sensor reading gas levels | ☐ |
-| Flame sensor detecting flame | ☐ |
-| RFID-RC522 reading access cards | ☐ |
-| DS3231 RTC providing timestamps | ☐ |
-| GY-521 accelerometer measuring vibration | ☐ |
-| SG90 servo rotating for dump bed | ☐ |
-| OLED display showing truck status | ☐ |
-| RGB LED color changes based on state | ☐ |
-| Buzzer sounds on alarms | ☐ |
-| Code is modular with functions | ☐ |
-| All components cleanly wired | ☐ |
-| Circuit diagram is clear and complete | ☐ |
-| README documents all pins and logic | ☐ |
-| Demo video shows normal and alarm scenarios | ☐ |
+| DHT11 sensor reading temperature | ✅ |
+| RFID-RC522 reading access cards | ✅ |
+| GY-521 accelerometer measuring vibration | ✅ |
+| RGB LED color changes based on state | ✅ |
+| Code is modular with functions | ✅ |
+| All components cleanly wired | ✅ |
+| Circuit diagram is clear and complete | ✅ |
+| README documents all pins and logic | ✅ |
 
 ---
 
 ## Optional Notes
 
-[Add any additional context: advanced features added, layout improvements, specific threshold values used, etc.]
+Due to time restraints, I have opt'd for (with Murray's approval) to mock part of my data. This decision was not done lightly, as I wanted to do use hardware with real data, but as I had a lot of issues with the hardware, I decided to move to mock data to get the project done.
 
 ---
 
@@ -163,11 +157,10 @@ Confirm all requirements completed before submitting:
 
 By submitting this form, I confirm that:
 
-- ☐ All code in my A4 folder is my own work
-- ☐ All sensors and actuators are correctly integrated and functional
-- ☐ Code follows ICTIOT502 assessment requirements
-- ☐ I have not plagiarized or breached academic integrity
-- ☐ Demo video demonstrates all required features
+- ✅ All code in my A4 folder is my own work
+- ✅ All sensors and actuators are correctly integrated and functional
+- ✅ Code follows ICTIOT502 assessment requirements
+- ✅ I have not plagiarized or breached academic integrity
 
 ---
 
