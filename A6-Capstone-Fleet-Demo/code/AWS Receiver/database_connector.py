@@ -2,21 +2,26 @@ import boto3
 import json
 from decimal import Decimal
 
-# CONFIG
-TABLE_NAME = "truck_data"
-OUTPUT_FILE = "dynamodb_export.json"
+# AWS credentials
+AWS_ACCESS_KEY_ID = "YOUR_ACCESS_KEY"
+AWS_SECRET_ACCESS_KEY = "YOUR_SECRET_KEY"
+
+# Optional if using temporary credentials
+AWS_SESSION_TOKEN = None
+
 REGION = "us-east-1"
 
+TABLE_NAME = "truck_data"
+OUTPUT_FILE = "dynamodb_export.json"
 
-# Convert Decimal objects returned by DynamoDB
+
 class DecimalEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, Decimal):
-            # Convert Decimal to int or float
             if obj % 1 == 0:
                 return int(obj)
             return float(obj)
-        return super(DecimalEncoder, self).default(obj)
+        return super().default(obj)
 
 
 def scan_table(table):
@@ -25,7 +30,6 @@ def scan_table(table):
     response = table.scan()
     items.extend(response.get("Items", []))
 
-    # Handle pagination
     while "LastEvaluatedKey" in response:
         response = table.scan(
             ExclusiveStartKey=response["LastEvaluatedKey"]
@@ -38,6 +42,9 @@ def scan_table(table):
 def main():
     dynamodb = boto3.resource(
         "dynamodb",
+        aws_access_key_id=AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+        aws_session_token=AWS_SESSION_TOKEN,
         region_name=REGION
     )
 
