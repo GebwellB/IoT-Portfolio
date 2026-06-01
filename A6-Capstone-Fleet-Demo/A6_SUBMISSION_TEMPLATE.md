@@ -152,19 +152,19 @@ Given the amount of AWS services that are not enabled in the lab environment, my
 
 Grafana Evidence:
 
-All 4 graphs showing data:
+All 4 graphs showing data:  
 ![[grafana-all.png]](media/grafana-all.png)
 
-MPU Data:
+MPU Data:  
 ![[grafana-mpu.png]](media/grafana-mpu.png)
 
-RFID Card Reader:
+RFID Card Reader:  
 ![[grafana-rfid.png]](media/grafana-rfid.png)
 
-Last 20 Temperature readings:
+Last 20 Temperature readings:  
 ![[grafana-temperature-last-20.png]](media/grafana-temperature-last-20.png)
 
-All Temperature's recorded:
+All Temperature's recorded:  
 ![[grafana-temperature-all.png]](media/grafana-temperature-all.png)
 
 | Requirement             | Link/Location                                        | Status     |
